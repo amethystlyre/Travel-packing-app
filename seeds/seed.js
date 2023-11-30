@@ -1,4 +1,5 @@
 const sequelize = require('../config/connection');
+const { Op } = require('sequelize');
 const { User, Baggage, Category, Item, PackList } = require('../models');
 
 const userData = require('./userData.json');
@@ -10,34 +11,30 @@ const packListData = require('./packListData.json');
 const seedDatabase = async () => {
     await sequelize.sync({ force: true });
 
-    const users = await User.bulkCreate(userData, {
+    await User.bulkCreate(userData, {
         individualHooks: true,
         returning: true,
     });
 
-    const categories = await Category.bulkCreate(categoryData);
+    await Category.bulkCreate(categoryData);
 
-    const bags = await Baggage.bulkCreate(baggageData);
+    await Baggage.bulkCreate(baggageData);
 
-    const items = await Item.bulkCreate(itemData);
+    let items = await Item.bulkCreate(itemData);
+    console.log(items);
 
     const packLists = await PackList.bulkCreate(packListData);
 
-    for (let i = 0; i < 10; i++) {
-        const { id: randomItemId } =
-            items[Math.floor(Math.random() * items.length)];
+    for (let i = 1; i <= packLists.length; i++) {
+        const list = await PackList.findByPk(i);
+        await list.addListOfItems(items);
 
-        const { id: randomPackListId } =
-            packLists[Math.floor(Math.random() * packLists.length)];
-        
-
-        // await ItemList.create({
-        //     item_id: randomItemId,
-        //     pack_list_id: randomPackListId,
-        // }).catch((err) => {
-        //     // If there's an error, such as the same random pairing of `traveller.id` and `location.id` occurring and we get a constraint error, don't quit the Node process
-        //     console.log(err);
-        // });
+        const bags = await Baggage.findAll({
+            where: {
+                [Op.or]: [{ id: 1 }, { id: 2 }, { id: 4 }, { id: 5 }],
+            },
+        });
+        await list.addLuggages(bags);
     }
 
     process.exit(0);
