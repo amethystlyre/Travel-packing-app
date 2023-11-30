@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Cabin Bag",
+        "capacity": 7.0
+    },
+    {
+        "name": "Medium Suitcase",
+        "capacity": 20
+    },
+    {
+        "name": "Large suitcase",
+        "capacity": 25
+    },
+    {
+        "name": "Handbag",
+        "capacity": null
+    },
+    {
+        "name": "Backpack",
+        "capacity": null
+    },
+    {
+        "name": "Duffle Bag",
+        "capacity": null
+    },
+    {
+        "name": "Garment Bags",
+        "capacity": null
+    },
+    {
+        "name": "Instrument cases",
+        "capacity": null
+    },
+    {
+        "name": "Oversize",
+        "capacity": null
+    }
+]

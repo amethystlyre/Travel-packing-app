@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Bali trip with mates",
+        "date_from:": null,
+        "date_to": null,
+        "destinations": "Indonesia",
+        "transports":"flight",
+        "climates":"tropical",
+        "user_id":1
+    },
+    {
+        "name": "QLD with Teddy",
+        "date_from": "2023-01-10",
+        "date_to": "2023-01-17",
+        "destinations": "Gold Coast, Cairns, Brisbane",
+        "transports":"cruise",
+        "climates":"tropical",
+        "user_id":2
+    },
+    {
+        "name": "Mornington hotsprings",
+        "date_from": "2023-07-10",
+        "date_to": "2023-07-12",
+        "destinations": "Mornington Peninsula",
+        "transports":"car",
+        "climates":"cold",
+        "user_id":3
+    }
+
+]
