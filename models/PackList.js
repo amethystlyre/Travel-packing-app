@@ -17,11 +17,11 @@ PackList.init(
         },
         date_from: {
             type: DataTypes.DATE,
-            allowNull: false,
+            allowNull: true,
         },
         date_to: {
             type: DataTypes.DATE,
-            allowNull: false,
+            allowNull: true,
         },
         destinations: {
             type: DataTypes.TEXT,
@@ -32,10 +32,6 @@ PackList.init(
             allowNull: true,
         },
         climates: {
-            type: DataTypes.TEXT,
-            allowNull: true,
-        },
-        baggage_options: {
             type: DataTypes.TEXT,
             allowNull: true,
         },
