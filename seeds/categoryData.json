@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Clothing"
+    },
+    {
+        "name": "Health"
+    },
+    {
+        "name": "Toiletries"
+    },
+    {
+        "name": "Accessory"
+    },
+    {
+        "name": "Instrument"
+    },
+    {
+        "name": "Document"
+    },
+    {
+        "name": "Makeup"
+    },
+    {
+        "name": "Gadget"
+    },
+    {
+        "name": "Miscellaneous"
+    }
+]
