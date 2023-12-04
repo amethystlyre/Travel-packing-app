@@ -22,7 +22,7 @@ PackList.belongsToMany(Item, {
 });
 
 Item.belongsToMany(PackList, {
-    as: 'packedIn',
+    //as: 'packedIn',
     through: 'ItemList',
     unique: false,
 });
