@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
 
         res.render('homepage', {
             items:items,
-            logged_in: req.session.logged_in,
+            loggedIn: req.session.loggedIn,
         });
     } catch (err) {
         console.log(err);
@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
 
 //Renders login page
 router.get('/login', (req, res) => {
-    if (req.session.logged_in) {
+    if (req.session.loggedIn) {
         res.redirect('/');
         return;
     }
@@ -54,7 +54,7 @@ router.get('/dashboard', isAuth, async (req, res) => {
       res.render('dashboard', {
         packLists,
         // Pass the logged in flag to the template
-        logged_in: req.session.logged_in,
+        loggedIn: req.session.loggedIn,
       });
     } catch (err) {
       res.status(500).json(err);
