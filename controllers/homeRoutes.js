@@ -43,17 +43,16 @@ router.get('/login', (req, res) => {
 });
 
 
-router.get('/', isAuth, async (req, res) => {
+router.get('/dashboard', isAuth, async (req, res) => {
     try {
-      const userData = await User.findAll({
-        attributes: { exclude: ['password'] },
-        order: [['name', 'ASC']],
+      const packListData = await PackList.findAll({
+        where: { user_id : req.session.user_id },
       });
   
-      const users = userData.map((project) => project.get({ plain: true }));
+      const packLists = packListData.map((packList) => packList.get({ plain: true }));
   
-      res.render('homepage', {
-        users,
+      res.render('dashboard', {
+        packLists,
         // Pass the logged in flag to the template
         logged_in: req.session.logged_in,
       });
@@ -62,16 +61,6 @@ router.get('/', isAuth, async (req, res) => {
     }
   });
   
-  router.get('/login', (req, res) => {
-    // If a session exists, 
-    // redirect the request to the homepage
-    if (req.session.logged_in) {
-      res.redirect('/');
-      return;
-    }
-  
-    res.render('login');
-  });
 
     
 
