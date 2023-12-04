@@ -45,16 +45,7 @@ router.get('/', isAuth, async (req, res) => {
     res.json(newPacklist);
    });
    
-   app.get('/packlist/items', async (req, res) => {
-    const items = await Item.findAll({ where: { PackListId: req.params.PackListId } });
-    res.json(items);
-   });
-   
-   app.post('/packlist/items', async (req, res) => {
-    const { name,} = req.body;
-    const item = await Item.create({ name, PackListId: req.params.PackListId });
-    res.json(item);
-   });
+  
   
 
 
