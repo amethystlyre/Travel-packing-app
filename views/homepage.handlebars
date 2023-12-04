@@ -1,0 +1,126 @@
+<div>
+    <h2>Create a new packing list</h2>
+    <form id='create-new-list-form' class=''>
+        <div class='form-group'>
+            <label for='name'>Name:</label>
+            <input type='text' id='name' name='name' required />
+        </div>
+        <div class='form-group'>
+            <label for='dateFrom'>Date From:</label>
+            <input type='date' id='dateFrom' name='dateFrom' />
+        </div>
+
+        <div class='form-group'>
+            <label for='dateTo'>Date To:</label>
+            <input type='date' id='dateTo' name='dateTo' />
+        </div>
+
+        <div class='form-group'>
+            <label for='destination'>Destinations:</label>
+            <input type='text' id='destination' name='destination' />
+        </div>
+
+        <div class='form-group transport'>
+            <label for='transport'>Travelling by:</label>
+            <input
+                type='checkbox'
+                id='vehicle1'
+                name='vehicle1'
+                value='Flight'
+            />
+            <label for='vehicle1'> Flight</label>
+            <input type='checkbox' id='vehicle2' name='vehicle2' value='Road' />
+            <label for='vehicle2'> Road</label>
+            <input type='checkbox' id='vehicle3' name='vehicle3' value='Ship' />
+            <label for='vehicle3'> Ship</label>
+            <input
+                type='checkbox'
+                id='vehicle4'
+                name='vehicle4'
+                value='Train'
+            />
+            <label for='vehicle3'> Train</label>
+            <input
+                type='checkbox'
+                id='vehicle5'
+                name='vehicle5'
+                value='Other'
+            />
+            <label for='vehicle3'>Other </label>
+        </div>
+        <div class='form-group baggage'>
+            <label for='climate'>Baggage:</label>
+            <input type='checkbox' id='bag1' name='bag1' value='Cabin Bag' />
+            <label for='bag1'>Cabin Bag</label>
+            <input type='checkbox' id='bag2' name='bag2' value='Medium Suitcase' />
+            <label for='bag2'>Medium Suitcase</label>
+            <input type='checkbox' id='bag3' name='bag3' value='Large suitcase' />
+            <label for='bag3'>Large suitcase</label>
+            <input type='checkbox' id='bag4' name='bag4' value='Handbag' />
+            <label for='bag1'>Handbag</label>
+            <input type='checkbox' id='bag5' name='bag5' value='Backpack' />
+            <label for='bag2'>Medium Suitcase</label>
+            <input type='checkbox' id='bag6' name='bag6' value='Duffle Bag' />
+            <label for='bag3'>Duffle Bag</label>
+            <input type='checkbox' id='bag7' name='bag7' value='Garment Bags' />
+            <label for='bag7'>Garment Bags</label>
+            <input type='checkbox' id='bag8' name='bag8' value='Equipment cases' />
+            <label for='bag8'>Instrument cases</label>            
+            <input type='checkbox' id='bag9' name='bag9' value='Oversize' />
+            <label for='bag9'>Oversize</label>      
+        </div>
+
+        <div class='form-group'>
+            <label for='climate'>Climate:</label>
+            <input type='text' id='climate' name='climate' />
+        </div>
+        <div class='form-group'>
+            <button type='submit'>Submit</button>
+        </div>
+    </form>
+
+    <div>
+        <h2>Add items to your list</h2>
+        <form id='add-items-to-list'>
+            <div class='autocomplete add-items'>
+                <input
+                    id='add-items'
+                    type='text'
+                    name='add-items'
+                    placeholder='Enter items'
+                />
+            </div>
+            <button type='submit'>Add</button>
+        </form>
+
+    </div>
+
+<div >
+    <h2>List of suggested items:</h2>
+    <div class='btn-group'>
+        {{#each items as |item|}}
+            <button data-id='{{item.id}}'>{{item.name}}</button>
+        {{/each}}
+    </div>
+    </div>
+
+    <div>
+        <h2>Items added:</h2>
+
+        <ul>
+            <li>
+                Test
+                <button><img
+                        src='assets/suitcase_plus.png'
+                        alt='add to bag'
+                        width='30'
+                        height='30'
+                    /></button>
+            </li>
+
+        </ul>
+    </div>
+
+</div>
+
+<script src='/js/script.js'></script>

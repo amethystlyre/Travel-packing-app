@@ -22,7 +22,7 @@ Open url link in a browser such as Google Chrome, Firefox or Edge etc.
 
 
 ## Credits
-NA
+<a href="https://www.freepik.com/icon/suitcase_2744091#fromView=search&term=luggage+tick&page=1&position=11&track=ais&uuid=048cc75c-22f1-46a2-896b-2fbcbbf01d01">Icon by Smashicons</a>
 
 ## License
 ![Badge](https://img.shields.io/badge/License-MIT-yellow)<br>
