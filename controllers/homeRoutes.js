@@ -1,9 +1,48 @@
 const router = require('express').Router();
-const { Baggage, Category, Item, PackList, User } = require('../models')
+const { Item, User , PackList , Category ,Baggage } = require('../models');
 const isAuth = require('../utils/auth');
 
 
 //routes for frontend data
+
+router.get('/', async (req, res) => {
+    try {
+        const itemData = await Item.findAll({
+            include: [
+                {
+                    model: Category,
+                },
+                {
+                    model: Baggage,
+                },
+            ],
+        });
+
+        const items = itemData.map((item) => item.get({ plain: true }));
+
+        res.render('homepage', {
+            items:items,
+            logged_in: req.session.logged_in,
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+
+
+//Renders login page
+router.get('/login', (req, res) => {
+    if (req.session.logged_in) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('login');
+});
+
+
 router.get('/', isAuth, async (req, res) => {
     try {
       const userData = await User.findAll({
@@ -45,7 +84,16 @@ router.get('/', isAuth, async (req, res) => {
     res.json(newPacklist);
    });
    
-  
+   app.get('/packlist/items', async (req, res) => {
+    const items = await Item.findAll({ where: { PackListId: req.params.PackListId } });
+    res.json(items);
+   });
+   
+   app.post('/packlist/items', async (req, res) => {
+    const { name,} = req.body;
+    const item = await Item.create({ name, PackListId: req.params.PackListId });
+    res.json(item);
+   });
   
 
 
