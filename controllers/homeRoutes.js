@@ -81,11 +81,19 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
 
         const itemList = itemListData.map((item) => item.get({ plain: true }));
 
+        const allItemData = await Item.findAll();
+        const suggestedItemsList = allItemData.map((item) => item.get({ plain: true }));
+
+    
+        //const items = itemData.map((item) => item.get({ plain: true }));
+    
+
         console.log(itemList);
 
         res.render('addItemsList', {
             itemList,
             packList,
+            suggestedItemsList,
             // Pass the logged in flag to the template
             loggedIn: req.session.loggedIn,
         });
@@ -95,7 +103,8 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
 });
 
 router.get('/new', isAuth, async (req, res) => {
-    try {    
+    try {
+    
             res.render('createNewList', {
                 user_id: req.session.userId,
                 loggedIn: req.session.loggedIn,
