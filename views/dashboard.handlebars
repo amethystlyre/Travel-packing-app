@@ -1,20 +1,23 @@
 
-
-
-
-{{#each packlists as |list| }}
+{{#each packLists as |list| }}
 <div class='row'>
     <div class='col'>
         <div class='list'>
             <div class='list-title'>
-                <h3><a href="/list/{{list.id}}">{{list.name}}</a></h3>
-                <p>For period from {{date_from}} to {{date_to}}</p>
+                <h3><a href="/dashboard/{{list.id}}">{{list.name}}</a></h3>
+                <p>For period from {{format_date date_from}} to {{format_date date_to}}</p>
                 <p>Destinations: {{list.destinations}}</p>
-                <p>Transport: {{list.destinations}}</p>
-                <p>climate: {{list.climates}}</p>
+                <p>Transport: {{list.transports}}</p>
+                <p>Climate: {{list.climates}}</p>
             </div>
             <p class=''>{{list.content}}</p>
         </div>
     </div>
 </div>
 {{/each}}
+
+<div>
+    {{> detailedItemsList}}
+</div>
+
+<script src='/js/dashboard.js'></script>
