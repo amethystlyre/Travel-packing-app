@@ -59,7 +59,8 @@ router.get('/dashboard', isAuth, async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-});
+  });
+
 
 router.get('/dashboard/:id', isAuth, async (req, res) => {
     try {
