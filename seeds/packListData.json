@@ -13,7 +13,7 @@
         "date_from": "2023-01-10",
         "date_to": "2023-01-17",
         "destinations": "Gold Coast, Cairns, Brisbane",
-        "transports":"cruise",
+        "transports":"ship",
         "climates":"tropical",
         "user_id":2
     },
