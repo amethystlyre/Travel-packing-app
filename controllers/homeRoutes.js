@@ -21,6 +21,7 @@ router.get('/', async (req, res) => {
 
         res.render('homepage', {
             items: items,
+            user_id: req.session.userId,
             loggedIn: req.session.loggedIn,
         });
     } catch (err) {
@@ -42,7 +43,7 @@ router.get('/login', (req, res) => {
 router.get('/dashboard', isAuth, async (req, res) => {
     try {
         const packListData = await PackList.findAll({
-            where: { user_id: req.session.user_id },
+            where: { user_id: req.session.userId },
         });
 
         const packLists = packListData.map((packList) =>
@@ -59,8 +60,7 @@ router.get('/dashboard', isAuth, async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
-  });
-
+});
 
 router.get('/dashboard/:id', isAuth, async (req, res) => {
     try {
