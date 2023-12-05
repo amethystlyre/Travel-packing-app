@@ -195,3 +195,16 @@ const checkLocalList = () => {
           return [];
       }
   }
+
+
+// event listener for ItemsList Template
+
+document.getElementById('itemList').addEventListener('click', function() {
+    var itemListDisplay = document.getElementById('itemList');
+    if (itemListDisplay.style.display === 'none') {
+        itemListDisplay.style.display = 'block';
+    } else {
+        itemListDisplay.style.display = 'none';
+    }
+});
+itemListDisplay()
