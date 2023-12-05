@@ -83,7 +83,7 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
 
         console.log(itemList);
 
-        res.render('dashboard', {
+        res.render('addItemsList', {
             itemList,
             packList,
             // Pass the logged in flag to the template
@@ -95,22 +95,8 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
 });
 
 router.get('/new', isAuth, async (req, res) => {
-    try {
-            const itemData = await Item.findAll({
-                include: [
-                    {
-                        model: Category,
-                    },
-                    {
-                        model: Baggage,
-                    },
-                ],
-            });
-    
-            const items = itemData.map((item) => item.get({ plain: true }));
-    
+    try {    
             res.render('createNewList', {
-                items: items,
                 user_id: req.session.userId,
                 loggedIn: req.session.loggedIn,
             });
