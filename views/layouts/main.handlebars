@@ -39,7 +39,7 @@
         <nav class='nav text-center text-grey font-semibold'>
             <a class='nav-link' id='homeLink' href='/'>Home</a>
             <a class='nav-link' id='dashboardLink' href='/dashboard'>Dashboard</a>
-            {{#if logged_in}}
+            {{#if loggedIn}}
                 <a class='nav-link' id="logout" href='/'>Logout</a>
             {{else}}
                 <a class='nav-link' id='logoutLink' href='/login'>Login</a>
@@ -56,7 +56,7 @@
         </main>
 
   
-        {{#if logged_in}}
+        {{#if loggedIn}}
             <script src='/js/logout.js'></script>
         {{/if}}
     </body>
