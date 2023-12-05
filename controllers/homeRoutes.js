@@ -50,6 +50,8 @@ router.get('/dashboard', isAuth, async (req, res) => {
             packList.get({ plain: true })
         );
 
+
+
         console.log(packLists);
 
         res.render('dashboard', {
@@ -87,6 +89,31 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
             // Pass the logged in flag to the template
             loggedIn: req.session.loggedIn,
         });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/new', isAuth, async (req, res) => {
+    try {
+            const itemData = await Item.findAll({
+                include: [
+                    {
+                        model: Category,
+                    },
+                    {
+                        model: Baggage,
+                    },
+                ],
+            });
+    
+            const items = itemData.map((item) => item.get({ plain: true }));
+    
+            res.render('createNewList', {
+                items: items,
+                user_id: req.session.userId,
+                loggedIn: req.session.loggedIn,
+            });
     } catch (err) {
         res.status(500).json(err);
     }

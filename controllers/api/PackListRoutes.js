@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const { PackList } = require('../../models');
+const isAuth = require('../../utils/auth');
 
-router.get ('/:PacklistId', async (req, res) => {
+router.get ('/', isAuth, async (req, res) => {
  try {
     const packList = await PackList.findByPk(req.params.id);
     if (!packList) {
@@ -13,9 +14,14 @@ router.get ('/:PacklistId', async (req, res) => {
  }
 });
 
-router.post ('/', async (req, res) => {
+router.post ('/', isAuth, async (req, res) => {
     try {
-        const newPackList = await PackList.create();
+        const newPackList = await PackList.create(
+         {
+            ...req.body,
+            user_id: req.session.userId,
+        }
+        );
       if (!newPackList) {
         return res.status(404).send({ message: 'Pack List not created.' });
       }
@@ -24,3 +30,5 @@ router.post ('/', async (req, res) => {
       res.status(500).send({ message: 'Error creating your Pack List.' });
    }
 }); 
+
+module.exports = router;
