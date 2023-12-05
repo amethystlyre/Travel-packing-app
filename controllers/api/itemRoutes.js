@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 });
 
    
-router.post('/item', async (req, res) => {
+router.post('/item:id', async (req, res) => {
     const { name,} = req.body;
     const item = await Item.create({ name, PackListId: req.params.PackListId });
     res.json(item);
