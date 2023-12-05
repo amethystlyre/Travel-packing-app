@@ -19,30 +19,11 @@
     <div>
         <h2>List of suggested items:</h2>
         <div class='btn-group'>
-            {{#each items as |item|}}
+            {{#each itemList as |item|}}
                 <button data-id='{{item.id}}'>{{item.name}}</button>
             {{/each}}
         </div>
     </div>
-
-    <div>
-        <h2>Items added:</h2>
-
-        <ul>
-            <li>
-                Test
-                <button><img
-                        src='assets/suitcase_plus.png'
-                        alt='add to bag'
-                        width='30'
-                        height='30'
-                    /></button>
-            </li>
-
-        </ul>
-    </div>
-
-<div>
 
     <form>
         <div>Sort by:</div>
@@ -93,3 +74,8 @@
     </ul>
 
 {{/each}}
+
+
+
+
+<script src='/js/script.js'></script>
