@@ -19,12 +19,19 @@ const createListHandler = async (event) => {
 
     let newPackList = {
         name: listName,
-        date_from: listDateFrom,
-        date_to: listDateTo,
         destinations: listDestination,
         transports: selectedTransport,
         climates: listClimate,
+        luggages:selectedBags,
     };
+
+    if(listDateFrom !=''){
+        newPackList.date_from=listDateFrom;
+    }
+
+    if(listDateTo !=''){
+        newPackList.date_to=listDateTo;
+    }
 
     if (listName) {
         const response = await fetch(`/api/packLists`, {
