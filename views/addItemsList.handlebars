@@ -19,8 +19,8 @@
     <div>
         <h2>List of suggested items:</h2>
         <div class='btn-group'>
-            {{#each itemList as |item|}}
-                <button data-id='{{item.id}}'>{{item.name}}</button>
+            {{#each suggestedItemsList as |sItem|}}
+                <button data-id='{{sItem.id}}'>{{sItem.name}}</button>
             {{/each}}
         </div>
     </div>
