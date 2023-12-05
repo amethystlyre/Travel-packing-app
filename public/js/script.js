@@ -130,19 +130,23 @@ autocomplete(document.getElementById('add-items'), itemsList);
 
 const addUnlistedItem = async (event) => {
     event.preventDefault();
-
+    
+    let packListId = document.querySelector('#add-items-to-list').dataset.id;
     let itemName = document.querySelector('#add-items').value.trim();
+    const newItem={
+        name: itemName,
+    }
     if (itemName) {
-        const response = await fetch(`/api/items`, {
+        const response = await fetch(`/api/items/${packListId}`, {
             method: 'POST',
-            body: JSON.stringify(newPackList),
+            body: JSON.stringify(newItem),
             headers: {
                 'Content-Type': 'application/json',
             },
         });
 
         if (response.ok) {
-            document.location.replace('/dashboard');
+            document.location.reload();
         } else {
             alert('Failed to create list');
             console.log(response.status);
@@ -152,18 +156,18 @@ const addUnlistedItem = async (event) => {
 };
 
 document
-    .querySelector('#create-new-list-form')
-    .addEventListener('submit', createListHandler);
+    .querySelector('#add-items-to-list')
+    .addEventListener('submit', addUnlistedItem);
 
 
 // event listener for ItemsList Template
 
-document.getElementById('itemList').addEventListener('click', function() {
-    var itemListDisplay = document.getElementById('itemList');
-    if (itemListDisplay.style.display === 'none') {
-        itemListDisplay.style.display = 'block';
-    } else {
-        itemListDisplay.style.display = 'none';
-    }
-});
-itemListDisplay()
+// document.getElementById('itemList').addEventListener('click', function() {
+//     var itemListDisplay = document.getElementById('itemList');
+//     if (itemListDisplay.style.display === 'none') {
+//         itemListDisplay.style.display = 'block';
+//     } else {
+//         itemListDisplay.style.display = 'none';
+//     }
+// });
+// itemListDisplay()

@@ -6,21 +6,8 @@ const isAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
-        const itemData = await Item.findAll({
-            include: [
-                {
-                    model: Category,
-                },
-                {
-                    model: Baggage,
-                },
-            ],
-        });
-
-        const items = itemData.map((item) => item.get({ plain: true }));
 
         res.render('homepage', {
-            items: items,
             user_id: req.session.userId,
             loggedIn: req.session.loggedIn,
         });

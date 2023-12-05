@@ -2,7 +2,7 @@
 
     <div>
         <h2>Add items to your list</h2>
-        <form id='add-items-to-list'>
+        <form id='add-items-to-list' data-id="{{packList.id}}">
             <div class='autocomplete add-items'>
                 <input
                     id='add-items'
@@ -18,7 +18,7 @@
 
     <div>
         <h2>List of suggested items:</h2>
-        <div class='btn-group'>
+        <div class='btn-group' data-id={{packList.id}}>
             {{#each suggestedItemsList as |sItem|}}
                 <button data-id='{{sItem.id}}'>{{sItem.name}}</button>
             {{/each}}
