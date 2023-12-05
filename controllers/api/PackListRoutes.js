@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { PackList } = require('../../models');
 
-router.get ('/', async (req, res) => {
+router.get ('/:PacklistId', async (req, res) => {
  try {
     const packList = await PackList.findByPk(req.params.id);
     if (!packList) {

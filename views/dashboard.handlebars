@@ -9,14 +9,19 @@
                 <p>Destinations: {{list.destinations}}</p>
                 <p>Transport: {{list.transports}}</p>
                 <p>Climate: {{list.climates}}</p>
+                
             </div>
             <p class=''>{{list.content}}</p>
         </div>
     </div>
 </div>
+<div>
+    <button> Update </button>
+    <button> Create </button>
+</div>
 {{/each}}
 
-<div>
+<div id="itemList">
     {{> detailedItemsList}}
 </div>
 
