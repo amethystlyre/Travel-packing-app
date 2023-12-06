@@ -19,8 +19,9 @@
     <div>
         <h2 class="font-semibold">List of suggested items:</h2>
         <div class='btn-group' data-id={{packList.id}}>
+        <div id='suggested-item-list' class='btn-group border-solid border-greyrounded-md p-2 hover:border-dotted hover:border-green' data-id={{packList.id}}>
             {{#each suggestedItemsList as |sItem|}}
-                <button data-id='{{sItem.id}}'><span class="flex bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md">{{sItem.name}}</span></button>
+                <button class="bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md" data-id='{{sItem.id}}'>{{sItem.name}}</button>
             {{/each}}
         </div>
     </div>
