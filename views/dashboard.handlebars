@@ -1,28 +1,27 @@
+<div> <button id='new-list-btn'> Create New List</button></div>
+{{#each packLists as |list|}}
+    <div class='row'>
+        <div class='col'>
+            <div class='list'>
+                <div class='list-title'>
+                    <h3><a href='/dashboard/{{list.id}}'>{{list.name}}</a></h3>
+                    <p>For period from
+                        {{format_date date_from}}
+                        to
+                        {{format_date date_to}}</p>
+                    <p>Destinations: {{list.destinations}}</p>
+                    <p>Transport: {{list.transports}}</p>
+                    <p>Climate: {{list.climates}}</p>
 
-{{#each packLists as |list| }}
-<div class='row'>
-    <div class='col'>
-        <div class='list'>
-            <div class='list-title'>
-                <h3><a href="/dashboard/{{list.id}}">{{list.name}}</a></h3>
-                <p>For period from {{format_date date_from}} to {{format_date date_to}}</p>
-                <p>Destinations: {{list.destinations}}</p>
-                <p>Transport: {{list.transports}}</p>
-                <p>Climate: {{list.climates}}</p>
-                
+                </div>
+                <p class=''>{{list.content}}</p>
             </div>
-            <p class=''>{{list.content}}</p>
         </div>
     </div>
-</div>
-<div>
-    <button> Update </button>
-    <button> Create </button>
-</div>
-{{/each}}
+    <div>
+        <button id= 'update-list-button'> Update List </button>
 
-<div id="itemList">
-    {{> detailedItemsList}}
-</div>
+    </div>
+{{/each}}
 
 <script src='/js/dashboard.js'></script>

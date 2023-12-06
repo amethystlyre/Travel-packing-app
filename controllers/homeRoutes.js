@@ -6,21 +6,8 @@ const isAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
-        const itemData = await Item.findAll({
-            include: [
-                {
-                    model: Category,
-                },
-                {
-                    model: Baggage,
-                },
-            ],
-        });
-
-        const items = itemData.map((item) => item.get({ plain: true }));
 
         res.render('homepage', {
-            items: items,
             user_id: req.session.userId,
             loggedIn: req.session.loggedIn,
         });
@@ -49,6 +36,8 @@ router.get('/dashboard', isAuth, async (req, res) => {
         const packLists = packListData.map((packList) =>
             packList.get({ plain: true })
         );
+
+
 
         console.log(packLists);
 
@@ -79,11 +68,19 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
 
         const itemList = itemListData.map((item) => item.get({ plain: true }));
 
+        const allItemData = await Item.findAll();
+        const suggestedItemsList = allItemData.map((item) => item.get({ plain: true }));
+
+    
+        //const items = itemData.map((item) => item.get({ plain: true }));
+    
+
         console.log(itemList);
 
-        res.render('dashboard', {
+        res.render('addItemsList', {
             itemList,
             packList,
+            suggestedItemsList,
             // Pass the logged in flag to the template
             loggedIn: req.session.loggedIn,
         });
@@ -91,5 +88,59 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+router.get('/new', isAuth, async (req, res) => {
+    try {
+    
+            res.render('createNewList', {
+                user_id: req.session.userId,
+                loggedIn: req.session.loggedIn,
+            });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/update', isAuth, async (req, res) => {
+    try {
+    
+            res.render('updatePackList', {
+                user_id: req.session.userId,
+                loggedIn: req.session.loggedIn,
+            });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/update/:id', async (req, res) => {
+    try {
+       const modelInstance = await PackList.findByPk(req.params.id);
+       res.render('updatePackList', {
+         myModelInstance: modelInstance,
+         user_id: req.session.userId,
+         loggedIn: req.session.loggedIn,
+       });
+    } catch (err) {
+       res.status(500).json(err);
+    }
+   });
+   
+   router.put('/update/:id', async (req, res) => {
+    try {
+       const modelInstance = await PackList.findByPk(req.params.id);
+       const updatedData = {
+        name: listName,
+        destinations: listDestination,
+        transports: selectedTransport,
+        climates: listClimate,
+        luggages: selectedBags,
+       };
+       await modelInstance.update(updatedData);
+       res.status(200).json(modelInstance);
+    } catch (err) {
+       res.status(500).json(err);
+    }
+   });
 
 module.exports = router;

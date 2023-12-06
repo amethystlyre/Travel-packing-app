@@ -128,83 +128,35 @@ autocomplete(document.getElementById('add-items'), itemsList);
 
 
 
-// create new list on homepage
-const createListHandler = async (event) => {
+const addUnlistedItem = async (event) => {
     event.preventDefault();
-
-    let listName = document.querySelector('#name').value.trim();
-    let listDateFrom = document.querySelector('#dateFrom');
-    let listDateTo = document.querySelector('#dateTo');
-    let listDestination = document.querySelector('#destination').value.trim();
-    let listTransport = document.querySelectorAll('input[name="vehicle"]:checked');
-    let selectedTransport = Array.from(listTransport).map((x) => x.value).toString();
-    let listBags = document.querySelectorAll('input[name="bag"]:checked');
-    let selectedBags = Array.from(listBags).map((x) => x.value);
-    let listClimate = document.querySelector('#climate').value.trim();
-
-    let tempPackList={
-      name: listName,
-      dateFrom: listDateFrom.value,
-      dateTo: listDateTo.value,
-      destinations: listDestination,
-      transports: selectedTransport,
-      climates: listClimate,
-      bags: selectedBags,
+    
+    let packListId = document.querySelector('#add-items-to-list').dataset.id;
+    let itemName = document.querySelector('#add-items').value.trim();
+    const newItem={
+        name: itemName,
     }
-
-    let newPackList = {
-        name: listName,
-        dateFrom: listDateFrom.value,
-        dateTo: listDateTo.value,
-        destinations: listDestination,
-        transports: selectedTransport,
-        climates: listClimate,
-    }
-
-
-    if (listName) {
-        const response = await fetch(`/api/packList`, {
+    if (itemName) {
+        const response = await fetch(`/api/items/${packListId}`, {
             method: 'POST',
-            body: JSON.stringify(newPackList),
+            body: JSON.stringify(newItem),
             headers: {
                 'Content-Type': 'application/json',
             },
         });
 
         if (response.ok) {
-            document.location.replace('/dashboard');
+            document.location.reload();
         } else {
-            alert('Please login to save list');
+            alert('Failed to create list');
             console.log(response.status);
-            localStorage.setItem("tempSavedList", JSON.stringify(tempPackList));
         }
-    }    
+    }
 
 };
 
 document
-    .querySelector('#create-new-list-form')
-    .addEventListener('submit', createListHandler);
+    .querySelector('#add-items-to-list')
+    .addEventListener('submit', addUnlistedItem);
 
 
-const checkLocalList = () => {
-      if (localStorage.hasOwnProperty("tempSavedList")) {
-          return JSON.parse(localStorage.getItem("tempSavedList"));
-      }
-      else {
-          return [];
-      }
-  }
-
-
-// event listener for ItemsList Template
-
-document.getElementById('itemList').addEventListener('click', function() {
-    var itemListDisplay = document.getElementById('itemList');
-    if (itemListDisplay.style.display === 'none') {
-        itemListDisplay.style.display = 'block';
-    } else {
-        itemListDisplay.style.display = 'none';
-    }
-});
-itemListDisplay()
