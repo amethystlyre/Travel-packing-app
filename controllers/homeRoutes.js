@@ -52,10 +52,31 @@ router.get('/dashboard', isAuth, async (req, res) => {
 });
 
 router.get('/dashboard/:id', isAuth, async (req, res) => {
+    console.log(req.query);
     try {
+        let sortProperty = 'Item';
+        let orderAttr = 'name';
+        let sortOrder = 'asc';
+        let orderby=[orderAttr,sortOrder];
+        if (req.query&&req.query.sort){
+            let sortBy = req.query.sort.split('-') ;
+
+            sortProperty = sortBy[0];
+            sortOrder = sortBy[1];
+            if (sortProperty=='item'){
+                orderby=[];
+                orderby.push(orderAttr,sortOrder);
+            }
+            else{
+                orderby=[];
+                orderby.push(sortProperty,orderAttr,sortOrder);
+            }
+
+        }
+
         const packListData = await PackList.findByPk(req.params.id);
         const packList = packListData.get({ plain: true });
-
+        console.log(orderby);
         const itemListData = await Item.findAll({
             where: { '$packLists.id$': req.params.id },
             include: [
@@ -63,7 +84,7 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
                 { model: Category },
                 { model: Baggage },
             ],
-            order: [['name', 'ASC']],
+            order: [orderby],
         });
 
         const itemList = itemListData.map((item) => item.get({ plain: true }));
@@ -101,17 +122,30 @@ router.get('/new', isAuth, async (req, res) => {
     }
 });
 
+router.get('/signup', async (req, res) => {
+    try {
+    
+            res.render('signup', {
+
+            });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 router.get('/update', isAuth, async (req, res) => {
     try {
     
             res.render('updatePackList', {
                 user_id: req.session.userId,
                 loggedIn: req.session.loggedIn,
-            });
+                          });
     } catch (err) {
         res.status(500).json(err);
     }
 });
+
+
 
 router.get('/update/:id', async (req, res) => {
     try {
@@ -142,5 +176,6 @@ router.get('/update/:id', async (req, res) => {
        res.status(500).json(err);
     }
    });
+
 
 module.exports = router;

@@ -1,27 +1,27 @@
 <div>
-    <h2>Create a new packing list</h2>
+    <h2 class="font-semibold text-center" style="font-size: 2.5vw;">Create a new packing list</h2>
     <form id='create-new-list-form' class=''>
         <div class='form-group'>
-            <label for='name'>Name*:</label>
+            <label for='name' class="font-semibold">Name*:</label>
             <input type='text' id='name' name='name' placeholder='Mandatory field'required />
         </div>
         <div class='form-group'>
-            <label for='dateFrom'>Date From:</label>
+            <label for='dateFrom' class="font-semibold">Date From:</label>
             <input type='date' id='dateFrom' name='dateFrom' />
         </div>
 
         <div class='form-group'>
-            <label for='dateTo'>Date To:</label>
+            <label for='dateTo' class="font-semibold">Date To:</label>
             <input type='date' id='dateTo' name='dateTo' />
         </div>
 
         <div class='form-group'>
-            <label for='destination'>Destinations:</label>
+            <label for='destination' class="font-semibold">Destinations:</label>
             <input type='text' id='destination' name='destination' />
         </div>
 
         <div class='form-group transport'>
-            <label for='transport-options'>Travelling by:</label>
+            <label for='transport-options' class="font-semibold">Travelling by:</label>
             <input
                 type='checkbox'
                 id='vehicle1'
@@ -59,7 +59,7 @@
             <label for='vehicle5'>Other </label>
         </div>
         <div class='form-group baggage'>
-            <label for='bag-options'>Baggage:</label>
+            <label for='bag-options' class="font-semibold">Baggage:</label>
             <input type='checkbox' id='bag1' name='bag' value='Cabin Bag' />
             <label for='bag1'>Cabin Bag</label>
             <input
@@ -96,11 +96,11 @@
         </div>
 
         <div class='form-group'>
-            <label for='climate'>Climate:</label>
+            <label for='climate' class="font-semibold">Climate:</label>
             <input type='text' id='climate' name='climate' />
         </div>
         <div class='form-group'>
-            <button type='submit'>Create list</button>
+            <button type='submit'><span class="flex bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md">Create List</span></button>
         </div>
     </form>
 
