@@ -5,9 +5,9 @@
         style='font-size: 2vw;'
     > Create New List</button></div>
 
-<div class='update-list'>
-    {{#each packLists as |list|}}
 
+    {{#each packLists as |list|}}
+<div class='list'>
         <div class='list-title space-y-2'>
             <h3 class='font-semibold text-xl align-center text-green'><a
                     href='/dashboard/{{list.id}}'
@@ -24,9 +24,9 @@
                 {{list.climates}}</p>
 
         </div>
-        <button class='bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md' data-id='{{list.id}}'>
-            Update</button>
-
-    {{/each}}
+        <button class='bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md'>
+            <a href='/update/{{list.id}}'>Update</a></button>
 </div>
+    {{/each}}
+
 <script src='/js/dashboard.js'></script>

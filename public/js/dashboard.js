@@ -8,15 +8,13 @@ document
     .querySelector('#new-list-btn')
     .addEventListener('click', newListButton);
 
-const updateListButton = async (event) => {
-    event.preventDefault();
-    if (event.target.hasAttribute('data-id')) {
-        let id = event.target.dataset.id;
+// const updateListButton = async (event) => {
+//     event.preventDefault();
 
-        window.location.href = `/update/${id}`;
-    }
-};
+//     window.location.href = `/update/${id}`;
 
-document
-    .querySelector('.update-list')
-    .addEventListener('click', updateListButton);
+// };
+
+// document
+//     .querySelector('')
+//     .addEventListener('click', updateListButton);
