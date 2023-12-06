@@ -133,5 +133,49 @@ router.get('/signup', async (req, res) => {
     }
 });
 
+router.get('/update', isAuth, async (req, res) => {
+    try {
+    
+            res.render('updatePackList', {
+                user_id: req.session.userId,
+                loggedIn: req.session.loggedIn,
+                          });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+
+
+router.get('/update/:id', async (req, res) => {
+    try {
+       const modelInstance = await PackList.findByPk(req.params.id);
+       res.render('updatePackList', {
+         myModelInstance: modelInstance,
+         user_id: req.session.userId,
+         loggedIn: req.session.loggedIn,
+       });
+    } catch (err) {
+       res.status(500).json(err);
+    }
+   });
+   
+   router.put('/update/:id', async (req, res) => {
+    try {
+       const modelInstance = await PackList.findByPk(req.params.id);
+       const updatedData = {
+        name: listName,
+        destinations: listDestination,
+        transports: selectedTransport,
+        climates: listClimate,
+        luggages: selectedBags,
+       };
+       await modelInstance.update(updatedData);
+       res.status(200).json(modelInstance);
+    } catch (err) {
+       res.status(500).json(err);
+    }
+   });
+
 
 module.exports = router;

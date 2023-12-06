@@ -58,4 +58,50 @@ router.post('/', isAuth, async (req, res) => {
     }
 });
 
+
+
+router.put('/', isAuth, async (req, res) => {
+    try {
+        const {
+            name,
+            date_from,
+            date_to,
+            destinations,
+            transports,
+            climates,
+            luggages,
+        } = req.body;
+
+        const updatedPackList = await PackList.update({
+            name: name,
+            date_from: date_from,
+            date_to: date_to,
+            destinations: destinations,
+            transports: transports,
+            climates: climates,
+            user_id: req.session.userId,
+        });
+        let bags = [];
+        //console.log(luggages);
+        for (let bag of luggages) {
+            bags.push(
+                await Baggage.findOne({
+                    where: { name: bag },
+                })
+            );
+        }
+        //console.log(bags);
+
+        await updatedPackList.addLuggages(bags);
+
+        if (!updatedPackList) {
+            return res.status(404).send({ message: 'Pack List not created.' });
+        }
+        console.log(updatedPackList);
+        res.status(200).send(updatedPackList);
+    } catch (error) {
+        res.status(500).send({ message: 'Error creating your Pack List.' });
+    }
+});
+
 module.exports = router;

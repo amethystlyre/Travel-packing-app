@@ -1,0 +1,41 @@
+<h2>{{packList.name}} </h2>
+
+<form>
+    <div>Sort by:</div>
+        <div class='form-group'>
+        <label for='name'>Name:</label>
+        <label for='name-asc'>ASC</label>
+        <input type='radio' id='name-asc' name='sort' value='name-asc' checked/>
+        <label for='name-desc'>DESC</label>
+        <input type='radio' id='name-desc' name='sort' value='name-desc' />
+    </div>
+    <div class='form-group'>
+        <label for='category'>Category:</label>
+        <label for='cat-asc'>ASC</label>
+        <input type='radio' id='cat-asc' name='sort' value='category-asc' />
+        <label for='cat-desc'>DESC</label>
+        <input type='radio' id='cat-desc' name='sort' value='category-desc' />
+    </div>
+    <div class='form-group'>
+        <label for='bags'>Bags:</label>
+        <label for='bag-asc'>ASC</label>
+        <input type='radio' id='bag-asc' name='sort' value='bag-asc' />
+        <label for='cat-desc'>DESC</label>
+        <input type='radio' id='bag-desc' name='sort' value='bag-desc' />
+    </div>
+    <button type='submit' id="sort-item-list">Sort</button>
+</form>
+
+<h3>List of items:</h3>
+
+
+{{#each itemList as |item|}}
+
+    <ul>
+        <li>{{item.name}}
+            <span>{{category.name}}</span>
+            <span>{{baggage.name}}</span></li>
+    </ul>
+
+{{/each}}
+
