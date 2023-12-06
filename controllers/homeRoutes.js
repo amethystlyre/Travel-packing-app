@@ -55,17 +55,28 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
     console.log(req.query);
     try {
         let sortProperty = 'Item';
-        let sortOrder = 'ASC';
+        let orderAttr = 'name';
+        let sortOrder = 'asc';
+        let orderby=[orderAttr,sortOrder];
         if (req.query&&req.query.sort){
             let sortBy = req.query.sort.split('-') ;
-            console.log(sortBy);
-            sortProperty = sortBy[0] ;
-            sortOrder = sortBy[1] ;
+
+            sortProperty = sortBy[0];
+            sortOrder = sortBy[1];
+            if (sortProperty=='item'){
+                orderby=[];
+                orderby.push(orderAttr,sortOrder);
+            }
+            else{
+                orderby=[];
+                orderby.push(sortProperty,orderAttr,sortOrder);
+            }
+
         }
 
         const packListData = await PackList.findByPk(req.params.id);
         const packList = packListData.get({ plain: true });
-
+        console.log(orderby);
         const itemListData = await Item.findAll({
             where: { '$packLists.id$': req.params.id },
             include: [
@@ -73,7 +84,7 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
                 { model: Category },
                 { model: Baggage },
             ],
-            order: [[Category, 'name', sortOrder ]],
+            order: [orderby],
         });
 
         const itemList = itemListData.map((item) => item.get({ plain: true }));
