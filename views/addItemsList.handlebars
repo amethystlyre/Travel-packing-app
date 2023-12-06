@@ -11,16 +11,16 @@
                     placeholder='Enter items'
                 />
             </div>
-            <button type='submit' class="font-semibold border-solid rounded-md p-2 hover:border-dotted hover:border-green">Add</button>
+            <button type='submit'><span class="bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md">Add</span></button>
         </form>
 
     </div>
 
     <div>
         <h2 class="font-semibold">List of suggested items:</h2>
-        <div class='btn-group border-solid border-greyrounded-md p-2 hover:border-dotted hover:border-green' data-id={{packList.id}}>
+        <div class='btn-group' data-id={{packList.id}}>
             {{#each suggestedItemsList as |sItem|}}
-                <button data-id='{{sItem.id}}'>{{sItem.name}}</button>
+                <button data-id='{{sItem.id}}'><span class="flex bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md">{{sItem.name}}</span></button>
             {{/each}}
         </div>
     </div>
@@ -59,7 +59,7 @@
             <label for='cat-desc'>DESC</label>
             <input type='radio' id='bag-desc' name='sort' value='bag-desc' />
         </div>
-        <button type='submit' id='sort-item-list' class="font-semibold border-solid rounded-md p-2 hover:border-dotted hover:border-green">Sort</button>
+        <button type='submit' id='sort-item-list'><span class="bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md">Sort</span></button>
     </form>
 </div>
 
