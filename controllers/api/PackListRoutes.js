@@ -2,9 +2,14 @@ const router = require('express').Router();
 const { PackList, Baggage } = require('../../models');
 const isAuth = require('../../utils/auth');
 
-router.get('/', isAuth, async (req, res) => {
+router.get('/:id', isAuth, async (req, res) => {
     try {
-        const packList = await PackList.findByPk(req.params.id);
+        const packListData = await PackList.findByPk(req.params.id, {
+            include: [{ model: Baggage, as: 'luggages' }],
+        });
+        const packList = packListData.get({ plain: true });
+        console.log(packList);
+
         if (!packList) {
             return res.status(404).send({ message: 'Pack List not found.' });
         }
@@ -60,7 +65,7 @@ router.post('/', isAuth, async (req, res) => {
 
 
 
-router.put('/', isAuth, async (req, res) => {
+router.put('/:id', isAuth, async (req, res) => {
     try {
         const {
             name,

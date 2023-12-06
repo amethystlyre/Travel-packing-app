@@ -1,27 +1,32 @@
-<div> <button id='new-list-btn' class="font-semibold underline hover:text-green" style="font-size: 2vw;"> Create New List</button></div>
-{{#each packLists as |list|}}
-    <div class='row'>
-        <div class='col'>
-            <div class='list'>
-                <div class='list-title space-y-2'>
-                    <h3 class="font-semibold text-xl align-center text-green"><a href='/dashboard/{{list.id}}'>{{list.name}}</a></h3>
-                    <p><span class="font-semibold">For a period from</span>
-                        {{format_date date_from}}
-                        <span class="font-semibold">to</span>
-                        {{format_date date_to}}</p>
-                    <p><span class="font-semibold">Destinations:</span> {{list.destinations}}</p>
-                    <p><span class="font-semibold">Transport:</span> {{list.transports}}</p>
-                    <p><span class="font-semibold">Climate:</span> {{list.climates}}</p>
+<div>
+    <button
+        id='new-list-btn'
+        class='font-semibold underline hover:text-green'
+        style='font-size: 2vw;'
+    > Create New List</button></div>
 
-                </div>
-                <p class=''>{{list.content}}</p>
-            </div>
+<div class='update-list'>
+    {{#each packLists as |list|}}
+
+        <div class='list-title space-y-2'>
+            <h3 class='font-semibold text-xl align-center text-green'><a
+                    href='/dashboard/{{list.id}}'
+                >{{list.name}}</a></h3>
+            <p><span class='font-semibold'>For a period from</span>
+                {{format_date date_from}}
+                <span class='font-semibold'>to</span>
+                {{format_date date_to}}</p>
+            <p><span class='font-semibold'>Destinations:</span>
+                {{list.destinations}}</p>
+            <p><span class='font-semibold'>Transport:</span>
+                {{list.transports}}</p>
+            <p><span class='font-semibold'>Climate:</span>
+                {{list.climates}}</p>
+
         </div>
-    </div>
-    <div>
-        <button><span class="bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md">Update</span></button>
+        <button class='bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md' data-id='{{list.id}}'>
+            Update</button>
 
-    </div>
-{{/each}}
-
+    {{/each}}
+</div>
 <script src='/js/dashboard.js'></script>

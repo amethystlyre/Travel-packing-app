@@ -6,7 +6,6 @@ const isAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
-
         res.render('homepage', {
             user_id: req.session.userId,
             loggedIn: req.session.loggedIn,
@@ -37,10 +36,6 @@ router.get('/dashboard', isAuth, async (req, res) => {
             packList.get({ plain: true })
         );
 
-
-
-        console.log(packLists);
-
         res.render('dashboard', {
             packLists,
             // Pass the logged in flag to the template
@@ -52,31 +47,29 @@ router.get('/dashboard', isAuth, async (req, res) => {
 });
 
 router.get('/dashboard/:id', isAuth, async (req, res) => {
-    console.log(req.query);
+    //console.log(req.query);
     try {
         let sortProperty = 'Item';
         let orderAttr = 'name';
         let sortOrder = 'asc';
-        let orderby=[orderAttr,sortOrder];
-        if (req.query&&req.query.sort){
-            let sortBy = req.query.sort.split('-') ;
+        let orderby = [orderAttr, sortOrder];
+        if (req.query && req.query.sort) {
+            let sortBy = req.query.sort.split('-');
 
             sortProperty = sortBy[0];
             sortOrder = sortBy[1];
-            if (sortProperty=='item'){
-                orderby=[];
-                orderby.push(orderAttr,sortOrder);
+            if (sortProperty == 'item') {
+                orderby = [];
+                orderby.push(orderAttr, sortOrder);
+            } else {
+                orderby = [];
+                orderby.push(sortProperty, orderAttr, sortOrder);
             }
-            else{
-                orderby=[];
-                orderby.push(sortProperty,orderAttr,sortOrder);
-            }
-
         }
 
         const packListData = await PackList.findByPk(req.params.id);
         const packList = packListData.get({ plain: true });
-        console.log(orderby);
+        //console.log(orderby);
         const itemListData = await Item.findAll({
             where: { '$packLists.id$': req.params.id },
             include: [
@@ -90,13 +83,13 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
         const itemList = itemListData.map((item) => item.get({ plain: true }));
 
         const allItemData = await Item.findAll();
-        const suggestedItemsList = allItemData.map((item) => item.get({ plain: true }));
+        const suggestedItemsList = allItemData.map((item) =>
+            item.get({ plain: true })
+        );
 
-    
         //const items = itemData.map((item) => item.get({ plain: true }));
-    
 
-        console.log(itemList);
+        //console.log(itemList);
 
         res.render('addItemsList', {
             itemList,
@@ -112,11 +105,10 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
 
 router.get('/new', isAuth, async (req, res) => {
     try {
-    
-            res.render('createNewList', {
-                user_id: req.session.userId,
-                loggedIn: req.session.loggedIn,
-            });
+        res.render('createNewList', {
+            user_id: req.session.userId,
+            loggedIn: req.session.loggedIn,
+        });
     } catch (err) {
         res.status(500).json(err);
     }
@@ -124,58 +116,44 @@ router.get('/new', isAuth, async (req, res) => {
 
 router.get('/signup', async (req, res) => {
     try {
-    
-            res.render('signup', {
-
-            });
+        res.render('signup', {});
     } catch (err) {
         res.status(500).json(err);
     }
 });
-
-router.get('/update', isAuth, async (req, res) => {
-    try {
-    
-            res.render('updatePackList', {
-                user_id: req.session.userId,
-                loggedIn: req.session.loggedIn,
-                          });
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
-
 
 router.get('/update/:id', async (req, res) => {
     try {
-       const modelInstance = await PackList.findByPk(req.params.id);
-       res.render('updatePackList', {
-         myModelInstance: modelInstance,
-         user_id: req.session.userId,
-         loggedIn: req.session.loggedIn,
-       });
-    } catch (err) {
-       res.status(500).json(err);
-    }
-   });
-   
-   router.put('/update/:id', async (req, res) => {
-    try {
-       const modelInstance = await PackList.findByPk(req.params.id);
-       const updatedData = {
-        name: listName,
-        destinations: listDestination,
-        transports: selectedTransport,
-        climates: listClimate,
-        luggages: selectedBags,
-       };
-       await modelInstance.update(updatedData);
-       res.status(200).json(modelInstance);
-    } catch (err) {
-       res.status(500).json(err);
-    }
-   });
+        // const packListData = await PackList.findByPk(req.params.id, {
+        //     include: [{ model: Baggage, as: 'luggages' }],
+        // });
+        // const packList = packListData.get({ plain: true });
+        // console.log(packList);
 
+        res.render('updatePackList', {
+            user_id: req.session.userId,
+            loggedIn: req.session.loggedIn,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.put('/update/:id', async (req, res) => {
+    try {
+        const modelInstance = await PackList.findByPk(req.params.id);
+        const updatedData = {
+            name: listName,
+            destinations: listDestination,
+            transports: selectedTransport,
+            climates: listClimate,
+            luggages: selectedBags,
+        };
+        await modelInstance.update(updatedData);
+        res.status(200).json(modelInstance);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 module.exports = router;
