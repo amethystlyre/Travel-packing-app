@@ -20,7 +20,7 @@ PackPal in an application designed to help travellers with organising their lugg
     
 ## Installation
     
-Open the provided url link in a browser such as Google Chrome, Firefox or Edge etc.
+Open the [PackPal App](https://travel-packing-app-0c97b9ac0fdb.herokuapp.com/) on a browser such as Google Chrome, Firefox or Edge etc.
 
 ## Usage
 
@@ -55,7 +55,10 @@ And there you have it! A simple and easy-to-use app for all your travel-packing-
 
 ## Contacts
 
-Project Link: [PackPal App](https://travel-packing-app-0c97b9ac0fdb.herokuapp.com/)
+Project Contributers:
+- [amethyslyre](https://github.com/amethystlyre)
+- [AlexGerraty](https://github.com/AlexGerraty)
+- [RubabaKhandaker](https://github.com/RubabaKhandaker)
 
 ## License
 
