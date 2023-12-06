@@ -15,7 +15,7 @@
           theme: {
             extend: {
               colors: {
-                green: '#A6FBB2',
+                green: '#29AB87',
                 grey: '#504C64',
                 white: '#FDFDFD',
               },
@@ -37,17 +37,17 @@
     <body>
 
         <nav class='nav text-center text-grey font-semibold'>
-            <a class='nav-link' id='homeLink' href='/'>Home</a>
-            <a class='nav-link' id='dashboardLink' href='/dashboard'>Dashboard</a>
+            <a class='nav-link hover:text-green' id='homeLink' href='/'>Home</a>
+            <a class='nav-link hover:text-green' id='dashboardLink' href='/dashboard'>Dashboard</a>
             {{#if loggedIn}}
-                <a class='nav-link' id="logout" href='/'>Logout</a>
+                <a class='nav-link hover:text-green' id="logout" href='/'>Logout</a>
             {{else}}
-                <a class='nav-link' id='logoutLink' href='/login'>Login</a>
+                <a class='nav-link hover:text-green' id='logoutLink' href='/login'>Login</a>
             {{/if}}
         </nav>
 
         <header>
-            <h1 class="packpalTitle text-center" style="font-size: 6vw;">PackPal</span></h1>
+            <h1 class="packpalTitle text-center" style="font-size: 6vw;">PackPal</h1>
         </header>
 
         <main class='container-fluid'>
