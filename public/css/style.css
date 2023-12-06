@@ -1,6 +1,6 @@
 :root {
   --grey: #504C64;
-  --green: #A6FBB2;
+  --green: #29AB87;
   --white: #FDFDFD;
 }
 
@@ -43,7 +43,7 @@ input[type=text] {
 }
 
 input[type=submit] {
-  background-color: DodgerBlue;
+  background-color: var(--green);
   color: #fff;
 }
 
@@ -73,6 +73,6 @@ input[type=submit] {
 
 .autocomplete-active {
   /*when navigating through the items using the arrow keys:*/
-  background-color: DodgerBlue !important;
+  background-color: var(--green) !important;
   color: #ffffff;
 }

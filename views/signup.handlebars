@@ -3,10 +3,10 @@
         <div class='signup'>
             <!-- Sign up Page -->
             <form class='form signup-form'>
-                <h2 class='signup-title p-2'>Create an account</h2>
-                <div class='p-3'>
+                <h2 class='signup-title p-2 text-center font-semibold' style="font-size: 2.5vw;">Create an account!</h2>
+                <div class='p-3 justify-center'>
                     <label
-                        class='form-label'
+                        class='form-label font-semibold'
                         for='signup-username'
                     >Username:</label>
                     <input
@@ -16,7 +16,7 @@
                         name='signup-username'
                     />
                     <label
-                        class='form-label mt-3'
+                        class='form-label mt-3 font-semibold'
                         for='signup-email'
                     >Email:</label>
                     <input
@@ -27,7 +27,7 @@
                     />
 
                     <label
-                        class='form-label mt-3'
+                        class='form-label mt-3 font-semibold'
                         for='signup-password'
                     >Password:</label>
                     <input
@@ -35,11 +35,11 @@
                         type='password'
                         id='signup-password'
                     />
-                    <p>*Minimum 8 characters</p>
+                    <p class="text-red-400 font-semibold">*Minimum 8 characters</p>
 
-                    <button class='btn btn-primary mt-3' type='submit'>Sign up</button>
+                    <button class='btn btn-primary mt-3 font-semibold hover:text-green' type='submit'>Sign up</button>
 
-                    <p> Already a user? <a href='/login'>Login</a> here. </p>
+                    <p class="text-center pt-10 font-semibold" style="font-size: 2.5wv"> Already a user? <a href='/login' class="hover:text-green">Login</a> here. </p>
                 </div>
             </form>
         </div>
