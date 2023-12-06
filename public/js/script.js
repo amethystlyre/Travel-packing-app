@@ -126,16 +126,14 @@ const autocomplete = (inp, arr) => {
 
 autocomplete(document.getElementById('add-items'), itemsList);
 
-
-
 const addUnlistedItem = async (event) => {
     event.preventDefault();
-    
+
     let packListId = document.querySelector('#add-items-to-list').dataset.id;
     let itemName = document.querySelector('#add-items').value.trim();
-    const newItem={
+    const newItem = {
         name: itemName,
-    }
+    };
     if (itemName) {
         const response = await fetch(`/api/items/${packListId}`, {
             method: 'POST',
@@ -152,22 +150,83 @@ const addUnlistedItem = async (event) => {
             console.log(response.status);
         }
     }
-
 };
 
 document
     .querySelector('#add-items-to-list')
     .addEventListener('submit', addUnlistedItem);
 
+const addItemFromDB = async (event) => {
+    event.preventDefault();
 
-// event listener for ItemsList Template
+    if (event.target.matches('button')) {
+        let packListId = document.querySelector('#suggested-item-list').dataset
+            .id;
+        let clickedItemId = event.target.dataset.id;
 
-// document.getElementById('itemList').addEventListener('click', function() {
-//     var itemListDisplay = document.getElementById('itemList');
-//     if (itemListDisplay.style.display === 'none') {
-//         itemListDisplay.style.display = 'block';
-//     } else {
-//         itemListDisplay.style.display = 'none';
-//     }
-// });
-// itemListDisplay()
+        console.log(packListId);
+        console.log(clickedItemId);
+
+        if (packListId && clickedItemId) {
+            const response = await fetch(
+                `/api/items/${packListId}?itemId=${clickedItemId}`,
+                {
+                    method: 'POST',
+                    body: JSON.stringify(),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+
+            if (response.ok) {
+                document.location.reload();
+            } else {
+                alert('Failed to create list');
+                console.log(response.status);
+            }
+        }
+    }
+};
+
+document
+    .querySelector('#suggested-item-list')
+    .addEventListener('click', addItemFromDB);
+
+
+    const sort = async (event) => {
+        event.preventDefault();
+    
+        if (event.target.matches('button')) {
+            let packListId = document.querySelector('#suggested-item-list').dataset
+                .id;
+            let clickedItemId = event.target.dataset.id;
+    
+            console.log(packListId);
+            console.log(clickedItemId);
+    
+            if (packListId && clickedItemId) {
+                const response = await fetch(
+                    `/api/items/${packListId}?itemId=${clickedItemId}`,
+                    {
+                        method: 'POST',
+                        body: JSON.stringify(),
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    }
+                );
+    
+                if (response.ok) {
+                    document.location.reload();
+                } else {
+                    alert('Failed to create list');
+                    console.log(response.status);
+                }
+            }
+        }
+    };
+    
+    document
+        .querySelector('#')
+        .addEventListener('click', );

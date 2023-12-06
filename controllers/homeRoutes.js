@@ -52,7 +52,17 @@ router.get('/dashboard', isAuth, async (req, res) => {
 });
 
 router.get('/dashboard/:id', isAuth, async (req, res) => {
+    console.log(req.query);
     try {
+        let sortProperty = 'Item';
+        let sortOrder = 'ASC';
+        if (req.query&&req.query.sort){
+            let sortBy = req.query.sort.split('-') ;
+            console.log(sortBy);
+            sortProperty = sortBy[0] ;
+            sortOrder = sortBy[1] ;
+        }
+
         const packListData = await PackList.findByPk(req.params.id);
         const packList = packListData.get({ plain: true });
 
@@ -63,7 +73,7 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
                 { model: Category },
                 { model: Baggage },
             ],
-            order: [['name', 'ASC']],
+            order: [[Category, 'name', sortOrder ]],
         });
 
         const itemList = itemListData.map((item) => item.get({ plain: true }));
@@ -100,5 +110,17 @@ router.get('/new', isAuth, async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+router.get('/signup', async (req, res) => {
+    try {
+    
+            res.render('signup', {
+
+            });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 
 module.exports = router;
