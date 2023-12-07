@@ -26,6 +26,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+//Renders dashboard with a list of packinglists
 router.get('/dashboard', isAuth, async (req, res) => {
     try {
         const packListData = await PackList.findAll({
@@ -37,7 +38,7 @@ router.get('/dashboard', isAuth, async (req, res) => {
             packList.get({ plain: true })
         );
 
-        console.log(packLists[0].luggages);
+        //console.log(packLists[0].luggages);
 
         res.render('dashboard', {
             packLists,
@@ -49,6 +50,7 @@ router.get('/dashboard', isAuth, async (req, res) => {
     }
 });
 
+//Renders individual packinglist details page where users can start adding items
 router.get('/dashboard/:id', isAuth, async (req, res) => {
     //console.log(req.query);
     try {
@@ -106,6 +108,7 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
     }
 });
 
+//renders page for creating new list
 router.get('/new', isAuth, async (req, res) => {
     try {
         res.render('createNewList', {
@@ -117,6 +120,7 @@ router.get('/new', isAuth, async (req, res) => {
     }
 });
 
+//renders page for creating sign up new user
 router.get('/signup', async (req, res) => {
     try {
         res.render('signup', {});
@@ -125,6 +129,7 @@ router.get('/signup', async (req, res) => {
     }
 });
 
+//renders page for updating details of an existing list
 router.get('/update/:id', async (req, res) => {
     try {
         const packListData = await PackList.findByPk(req.params.id, {
