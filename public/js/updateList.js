@@ -9,6 +9,8 @@ const updateListHandler = async (event) => {
     let listTransport = document.querySelectorAll(
         'input[name="vehicle"]:checked'
     );
+    let listId = document.querySelector('#update-list-form').dataset.id;
+    
     let selectedTransport = Array.from(listTransport)
         .map((x) => x.value)
         .toString();
@@ -16,25 +18,24 @@ const updateListHandler = async (event) => {
     let selectedBags = Array.from(listBags).map((x) => x.value);
     let listClimate = document.querySelector('#climate').value.trim();
 
-
     let updatedPackList = {
         name: listName,
         destinations: listDestination,
         transports: selectedTransport,
         climates: listClimate,
-        luggages:selectedBags,
+        luggages: selectedBags,
     };
 
-    if(listDateFrom !=''){
-        updatedPackList.date_from=listDateFrom;
+    if (listDateFrom != '') {
+        updatedPackList.date_from = listDateFrom;
     }
 
-    if(listDateTo !=''){
-        updatedPackList.date_to=listDateTo;
+    if (listDateTo != '') {
+        updatedPackList.date_to = listDateTo;
     }
 
     if (listName) {
-        const response = await fetch(`/api/packLists`, {
+        const response = await fetch(`/api/packLists/${listId}`, {
             method: 'PUT',
             body: JSON.stringify(updatedPackList),
             headers: {
@@ -53,6 +54,8 @@ const updateListHandler = async (event) => {
 };
 
 document
-    .querySelector('#update-list-form')
+    .querySelector('#final-update-list-button')
     .addEventListener('submit', updateListHandler);
+
+
 

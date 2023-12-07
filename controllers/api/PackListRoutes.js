@@ -66,15 +66,20 @@ router.post('/', isAuth, async (req, res) => {
 
 router.put('/update/:id', async (req, res) => {
     try {
-        const modelInstance = await PackList.findByPk(req.params.id);
+        //await req.session.save();
+
         const updatedData = {
             name: req.body.name,
-            destinations: req.body.destinations,
-            transports: req.body.transports,
-            climates: req.body.climates,
-            luggages: req.body.bags,
+            destinations: req.body.destination,
+            transports: req.body.transport,
+            climates: req.body.climate,
+            date_from: req.body.date_from,
+            date_to: req.body.date_to,
         };
+
+        const modelInstance = await PackList.findByPk(req.params.id);
         await modelInstance.update(updatedData);
+
         res.status(200).json(modelInstance);
     } catch (err) {
         res.status(500).json(err);
