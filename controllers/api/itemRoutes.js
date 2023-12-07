@@ -31,7 +31,7 @@ router.post('/:plid', isAuth, async (req, res) => {
             cat = catData.map((item) =>
             item.get({ plain: true }));
         }
-        console.log(cat[0].id);
+        //console.log(cat[0].id);
 
 
         if (req.body && req.body.name) {
