@@ -37,7 +37,7 @@ router.get('/dashboard', isAuth, async (req, res) => {
             packList.get({ plain: true })
         );
 
-        console.log(packLists[0].luggages);
+        //console.log(packLists[0].luggages);
 
         res.render('dashboard', {
             packLists,
