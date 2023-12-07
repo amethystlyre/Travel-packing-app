@@ -5,9 +5,13 @@ const router = require('express').Router();
 const userRoutes = require('./userRoutes');
 const itemRoutes = require('./itemRoutes');
 const packListRoutes = require('./PackListRoutes');
+const baggageRoutes = require('./baggageRoutes');
+const categoryRoutes = require('./categoryRoutes');
 
 router.use('/users', userRoutes);
 router.use('/items', itemRoutes);
 router.use('/packLists', packListRoutes);
+router.use('/baggages', baggageRoutes);
+router.use('/categories', categoryRoutes);
 
 module.exports = router;

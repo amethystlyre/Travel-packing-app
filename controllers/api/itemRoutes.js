@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Item, PackList } = require('../../models');
+const { Item, PackList, Category } = require('../../models');
 const isAuth = require('../../utils/auth');
 
 router.get('/', isAuth, async (req, res) => {
@@ -21,9 +21,32 @@ router.post('/:plid', isAuth, async (req, res) => {
     console.log(req.body);
     try {
         let item;
+        let cat;
+
+        if (req.body.category){
+            const {category} = req.body;
+            catData = await Category.findAll({
+                where: { name: category }
+            });
+            cat = catData.map((item) =>
+            item.get({ plain: true }));
+        }
+        console.log(cat[0].id);
+
+
         if (req.body && req.body.name) {
             const { name } = req.body;
-            item = await Item.create({ name });
+            if (cat[0].id){
+            item = await Item.create({ 
+                name: name,
+                category_id:cat[0].id,
+            });
+        } else{
+            item = await Item.create({ 
+                name: name,
+            });
+        }
+
         } else if (req.query && req.query.itemId) {
             item = await Item.findByPk(req.query.itemId);
         }

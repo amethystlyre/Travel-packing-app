@@ -1,7 +1,7 @@
 <h2 class="font-semibold text-2xl text-green">{{packList.name}} </h2>
 
     <div>
-        <h2 class="font-semibold" text-xl>Add items to your list</h2>
+        <h2 class="font-semibold text-xl" >Add items to your list</h2>
         <form id='add-items-to-list' data-id="{{packList.id}}">
             <div class='autocomplete add-items'>
                 <input
@@ -11,6 +11,23 @@
                     placeholder='Enter items'
                 />
             </div>
+            <div class='autocomplete add-items'>
+                <input
+                    id='add-items-cat'
+                    type='text'
+                    name='add-items'
+                    placeholder='Category'
+                />
+            </div>
+               <div class='autocomplete add-items'>
+                <input
+                    id='add-items-bag'
+                    type='text'
+                    name='add-items'
+                    placeholder='Bags'
+                />
+            </div>
+            
             <button type='submit'><span class="bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md">Add</span></button>
         </form>
 

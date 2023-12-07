@@ -1,4 +1,6 @@
 var itemsList = [];
+var categoriesList=[];
+var bagsList = [];
 
 const items = async () => {
     const response = await fetch(`/api/items`, {
@@ -15,7 +17,39 @@ const items = async () => {
     }
 };
 
+const categories = async () => {
+    const response = await fetch(`/api/categories`, {
+        method: 'GET',
+    });
+    if (response.ok) {
+        let data = await response.json();
+        console.log(data);
+        for (let category of data) {
+            categoriesList.push(category.name);
+        }
+    } else {
+        alert('Failed to get details');
+    }
+};
+
+const bags = async () => {
+    const response = await fetch(`/api/baggages`, {
+        method: 'GET',
+    });
+    if (response.ok) {
+        let data = await response.json();
+        console.log(data);
+        for (let bag of data) {
+            bagsList.push(bag.name);
+        }
+    } else {
+        alert('Failed to get details');
+    }
+};
+
 items();
+categories();
+bags();
 
 //Code copied from https://www.w3schools.com/howto/howto_js_autocomplete.asp
 const autocomplete = (inp, arr) => {
@@ -125,15 +159,50 @@ const autocomplete = (inp, arr) => {
 };
 
 autocomplete(document.getElementById('add-items'), itemsList);
+autocomplete(document.getElementById('add-items-cat'), categoriesList);
+autocomplete(document.getElementById('add-items-bag'), bagsList);
 
 const addUnlistedItem = async (event) => {
     event.preventDefault();
 
     let packListId = document.querySelector('#add-items-to-list').dataset.id;
     let itemName = document.querySelector('#add-items').value.trim();
+    let categoryName = document.querySelector('#add-items-cat').value.trim();
+    let bagName = document.querySelector('#add-items-bag').value.trim();
+    let catData;
+
+    if(!categoriesList.includes(categoryName)){
+        const newCategory = {
+            name: categoryName,
+        };
+
+        const response = await fetch(`/api/categories/`, {
+            method: 'POST',
+            body: JSON.stringify(newCategory),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (response.ok) {
+            catData= await response.json();
+            console.log(catData);
+
+        } else {
+            //alert('Failed to create list');
+            console.log(response.status);
+        }
+
+    }
+    
     const newItem = {
         name: itemName,
     };
+
+    if (categoryName){
+        newItem.category=categoryName;
+    }
+    console.log(newItem);
+
     if (itemName) {
         const response = await fetch(`/api/items/${packListId}`, {
             method: 'POST',
