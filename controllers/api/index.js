@@ -4,7 +4,7 @@ const router = require('express').Router();
 
 const userRoutes = require('./userRoutes');
 const itemRoutes = require('./itemRoutes');
-const packListRoutes = require('./packListRoutes');
+const packListRoutes = require('./PackListRoutes');
 const baggageRoutes = require('./baggageRoutes');
 const categoryRoutes = require('./categoryRoutes');
 
