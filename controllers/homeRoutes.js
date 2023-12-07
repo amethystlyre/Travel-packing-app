@@ -124,13 +124,14 @@ router.get('/signup', async (req, res) => {
 
 router.get('/update/:id', async (req, res) => {
     try {
-        // const packListData = await PackList.findByPk(req.params.id, {
-        //     include: [{ model: Baggage, as: 'luggages' }],
-        // });
-        // const packList = packListData.get({ plain: true });
-        // console.log(packList);
+        const packListData = await PackList.findByPk(req.params.id, {
+            include: [{ model: Baggage, as: 'luggages' }],
+        });
+        const packList = packListData.get({ plain: true });
+        console.log(packList);
 
         res.render('updatePackList', {
+            packList:packList,
             user_id: req.session.userId,
             loggedIn: req.session.loggedIn,
         });
@@ -139,21 +140,21 @@ router.get('/update/:id', async (req, res) => {
     }
 });
 
-router.put('/update/:id', async (req, res) => {
-    try {
-        const modelInstance = await PackList.findByPk(req.params.id);
-        const updatedData = {
-            name: listName,
-            destinations: listDestination,
-            transports: selectedTransport,
-            climates: listClimate,
-            luggages: selectedBags,
-        };
-        await modelInstance.update(updatedData);
-        res.status(200).json(modelInstance);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
+// router.put('/update/:id', async (req, res) => {
+//     try {
+//         const modelInstance = await PackList.findByPk(req.params.id);
+//         const updatedData = {
+//             name: listName,
+//             destinations: listDestination,
+//             transports: selectedTransport,
+//             climates: listClimate,
+//             luggages: selectedBags,
+//         };
+//         await modelInstance.update(updatedData);
+//         res.status(200).json(modelInstance);
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
 
 module.exports = router;
