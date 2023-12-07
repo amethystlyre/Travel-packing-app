@@ -9,8 +9,6 @@ const updateListHandler = async (event) => {
     let listTransport = document.querySelectorAll(
         'input[name="vehicle"]:checked'
     );
-
-    let listId = document.querySelector('#update-list-form').dataset.id;
     let selectedTransport = Array.from(listTransport)
         .map((x) => x.value)
         .toString();
@@ -36,15 +34,13 @@ const updateListHandler = async (event) => {
     }
 
     if (listName) {
-        const response = await fetch(`/api/packLists/${listId}`, {
+        const response = await fetch(`/api/packLists`, {
             method: 'PUT',
             body: JSON.stringify(updatedPackList),
             headers: {
                 'Content-Type': 'application/json',
             },
         });
-
-        console.log(updatedPackList);
 
         if (response.ok) {
             console.log(response);
