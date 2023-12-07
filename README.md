@@ -4,7 +4,7 @@
 
 ## Description
     
-PackPal in an application designed to help travellers with organising their luggage and the items they will need to bring to their trips - whether it's for a short road trip, a holiday overseas or business travels.
+PackPal is an application designed to help travellers with organising their luggage and the items they will need to bring to their trips - whether it's for a short road trip, a holiday overseas or business travels.
 
 ![Screenshot of homepage](./public/assets/homepage_ss.png)
     
