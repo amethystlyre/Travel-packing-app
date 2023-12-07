@@ -1,5 +1,5 @@
 var itemsList = [];
-var categoriesList=[];
+var categoriesList = [];
 var bagsList = [];
 
 const items = async () => {
@@ -171,7 +171,7 @@ const addUnlistedItem = async (event) => {
     let bagName = document.querySelector('#add-items-bag').value.trim();
     let catData;
 
-    if(!categoriesList.includes(categoryName)){
+    if (!categoriesList.includes(categoryName)) {
         const newCategory = {
             name: categoryName,
         };
@@ -184,22 +184,20 @@ const addUnlistedItem = async (event) => {
             },
         });
         if (response.ok) {
-            catData= await response.json();
+            catData = await response.json();
             console.log(catData);
-
         } else {
             //alert('Failed to create list');
             console.log(response.status);
         }
-
     }
-    
+
     const newItem = {
         name: itemName,
     };
 
-    if (categoryName){
-        newItem.category=categoryName;
+    if (categoryName) {
+        newItem.category = categoryName;
     }
     console.log(newItem);
 
@@ -261,3 +259,40 @@ const addItemFromDB = async (event) => {
 document
     .querySelector('#suggested-item-list')
     .addEventListener('click', addItemFromDB);
+
+const removeItemFromDB = async (event) => {
+    event.preventDefault();
+
+    if (event.target.matches('button')) {
+        let packListId = document.querySelector('#suggested-item-list').dataset
+            .id;
+        let clickedItemId = event.target.dataset.id;
+
+        console.log(packListId);
+        console.log(clickedItemId);
+
+        if (packListId && clickedItemId) {
+            const response = await fetch(
+                `/api/items/${packListId}?itemId=${clickedItemId}`,
+                {
+                    method: 'PUT',
+                    body: JSON.stringify(),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+
+            if (response.ok) {
+                document.location.reload();
+            } else {
+                alert('Failed to remove item');
+                console.log(response.status);
+            }
+        }
+    }
+};
+
+document
+    .querySelector('#items-in-list')
+    .addEventListener('click', removeItemFromDB);

@@ -101,14 +101,15 @@
 
 
 
-    <ul>
+    <ul id="items-in-list">
         {{#each itemList as |item|}}
 
             <li>
-                <div class='container m-auto grid grid-cols-3'>
+                <div class='container m-auto grid grid-cols-4'>
                     <div>{{item.name}}</div>
                     <div>{{category.name}}</div>
                     <div>{{baggage.name}}</div>
+                    <div><button class='bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md' data-id="{{item.id}}">Remove</button></div>
                 </div></li>
 
         {{/each}}
