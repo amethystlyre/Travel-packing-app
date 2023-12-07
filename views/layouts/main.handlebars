@@ -19,6 +19,7 @@
                 grey: '#504C64',
                 white: '#FDFDFD',
               },
+  
               fontFamily: {
                 helvetica: ['Helvetica', 'Arial', 'sans-serif'],
               }
@@ -35,12 +36,7 @@
 
     <body>
 
-        <header>
-            <h1 class="packpalTitle text-center pt-5
-            " style="font-size: 6vw;">PackPal</h1>
-        </header>
-        
-        <nav class='nav text-center text-grey font-semibold p-2 text-lg'>
+        <nav class='nav text-center text-grey font-semibold'>
             <a class='nav-link hover:text-green' id='homeLink' href='/'>Home</a>
             <a class='nav-link hover:text-green' id='dashboardLink' href='/dashboard'>Dashboard</a>
             {{#if loggedIn}}
@@ -50,20 +46,18 @@
             {{/if}}
         </nav>
 
+        <header>
+            <h1 class="packpalTitle text-center" style="font-size: 6vw;">PackPal</h1>
+        </header>
+
         <main class='container-fluid'>
             <!-- Render the sub layout -->
             {{{body}}}
         </main>
 
   
-        <footer class="text-center pt-5">
-          Copyright © 2023 Project on Github and Heroku
-        </footer>
-
         {{#if loggedIn}}
             <script src='/js/logout.js'></script>
         {{/if}}
-
     </body>
-
 </html>

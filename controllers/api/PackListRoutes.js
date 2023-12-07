@@ -67,9 +67,6 @@ router.post('/', isAuth, async (req, res) => {
 
 router.put('/:id', isAuth, async (req, res) => {
     try {
-
-        //console.log(req.body);
-        //console.log(req.params.id);
         const {
             name,
             date_from,
@@ -87,11 +84,8 @@ router.put('/:id', isAuth, async (req, res) => {
             destinations: destinations,
             transports: transports,
             climates: climates,
-        }, {
-            where: {
-              id:req.params.id
-            }
-          });
+            user_id: req.session.userId,
+        });
         let bags = [];
         //console.log(luggages);
         for (let bag of luggages) {
@@ -102,17 +96,13 @@ router.put('/:id', isAuth, async (req, res) => {
             );
         }
         //console.log(bags);
-        //console.log(updatedPackList);
 
-        const list = await PackList.findByPk(req.params.id);
-        console.log(list);
-
-        await list.addLuggages(bags);
+        await updatedPackList.addLuggages(bags);
 
         if (!updatedPackList) {
-            return res.status(404).send({ message: 'Pack List not updated.' });
+            return res.status(404).send({ message: 'Pack List not created.' });
         }
-        // console.log(updatedPackList);
+        console.log(updatedPackList);
         res.status(200).send(updatedPackList);
     } catch (error) {
         res.status(500).send({ message: 'Error creating your Pack List.' });

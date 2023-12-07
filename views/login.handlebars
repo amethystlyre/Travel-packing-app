@@ -1,49 +1,38 @@
-<div class='login'>
-    <!-- Login Page -->
-    <form class='form login-form'>
-        <h2
-            class='login-title p-2 text-center font-semibold'
-            style='font-size: 2.5vw;'
-        >Log into your account!</h2>
-        <div
-            class='flex flex-row flex-wrap p-3 justify-center items-center m-1'
-        >
-            <div>
-                <label
-                    class='form-label font-semibold p-2 m-2'
-                    for='login-email'
-                >Email: </label>
-                <input
-                    class='form-control p-2 m-2'
-                    type='text'
-                    id='login-email'
-                    name='login-email'
-                />
-            </div>
-            <div>
-                <label
-                    class='form-label font-semibold p-2 m-2'
-                    for='login-password'
-                >Password:</label>
-                <input
-                    class='form-control p-2 m-2'
-                    type='password'
-                    id='login-password'
-                />
-            </div>
-            <div>
-                <button class='btn btn-primary p-2' type='submit'><span
-                        class='bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md'
-                    >Login</span></button>
-            </div>
-        </div>
-    </form>
-    <p class='text-center pt-10 font-semibold text-xl'><a
-            href='/signup'
-            class='underline hover:text-green'
-        >Sign up</a>
-        instead!</p>
+<div class='row d-flex mt-3 justify-content-center'>
+    <div class='col-8'>
+        <div class='login'>
+            <!-- Login Page -->
+            <form class='form login-form'>
+                <h2 class='login-title p-2 text-center font-semibold' style="font-size: 2.5vw;">Log into your account!</h2>
+                <div class='p-3 justify-center'>
+                    <label class='form-label font-semibold' for='login-email'>Email:</label>
+                    <input
+                        class='form-control'
+                        type='text'
+                        id='login-email'
+                        name='login-email'
+                    />
 
+                    <label
+                        class='form-label mt-3 font-semibold'
+                        for='login-password'
+                    >Password:</label>
+                    <input
+                        class='form-control'
+                        type='password'
+                        id='login-password'
+                    />
+
+                    <button
+                        class='btn btn-primary mt-3 pl-7'
+                        type='submit'
+                    ><span class="bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md">Login</span></button>
+
+                    <p class="text-center pt-10 font-semibold" style="font-size: 2.5vw;"><a href='/signup' class="underline hover:text-green">Sign up</a> instead!</p>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 <script src='./js/login.js'></script>
