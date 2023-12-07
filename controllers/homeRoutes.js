@@ -26,6 +26,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+//renders dashboard to list all packing
 router.get('/dashboard', isAuth, async (req, res) => {
     try {
         const packListData = await PackList.findAll({
@@ -49,6 +50,7 @@ router.get('/dashboard', isAuth, async (req, res) => {
     }
 });
 
+//renders dashboard to list individual packing details
 router.get('/dashboard/:id', isAuth, async (req, res) => {
     //console.log(req.query);
     try {
@@ -106,6 +108,7 @@ router.get('/dashboard/:id', isAuth, async (req, res) => {
     }
 });
 
+//renders the page to create new list
 router.get('/new', isAuth, async (req, res) => {
     try {
         res.render('createNewList', {
