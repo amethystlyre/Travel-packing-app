@@ -61,4 +61,35 @@ router.post('/:plid', isAuth, async (req, res) => {
     }
 });
 
+router.put('/:plid', isAuth, async (req, res) => {
+    console.log(req.query);
+    console.log(req.body);
+    try {
+        const list = await PackList.findByPk(req.params.plid,{
+            include: [
+                { model: Item , as: 'listOfItems'},
+            ],
+        });
+        //const packList = packListData.get({ plain: true });
+        //console.log(packList);
+        //console.log( req.query.itemId);
+
+        if (req.query && req.query.itemId) {
+
+            let item = await Item.findByPk(req.query.itemId);
+            console.log(item);
+            if (item){
+                await list.removeListOfItem(item);
+            }
+    
+            res.status(200).json('item removed');
+
+        }
+        
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
 module.exports = router;
