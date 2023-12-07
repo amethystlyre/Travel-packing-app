@@ -1,7 +1,7 @@
-<div>
-    <h2>Update your Packing List</h2>
-    <form id='update-list-form' class=''>
-        <div class='form-group'>
+<div class="mx-10 m-2" >
+    <h2 class="text-lg font-semibold">Update your Packing List</h2>
+    <form id='update-list-form' class='' data-id='{{packList.id}}'>
+        <div class='form-group m-2'>
             <label for='name'>Name*:</label>
             <input
                 type='text'
@@ -12,7 +12,7 @@
                 required
             />
         </div>
-        <div class='form-group'>
+        <div class='form-group m-2'>
             <label for='dateFrom'>Date From:</label>
             <input
                 type='date'
@@ -22,7 +22,7 @@
             />
         </div>
 
-        <div class='form-group'>
+        <div class='form-group m-2'>
             <label for='dateTo'>Date To:</label>
             <input
                 type='date'
@@ -32,7 +32,7 @@
             />
         </div>
 
-        <div class='form-group'>
+        <div class='form-group m-2'>
             <label for='destination'>Destinations:</label>
             <input
                 type='text'
@@ -42,7 +42,7 @@
             />
         </div>
 
-        <div class='form-group transport'>
+        <div class='form-group transport m-2'>
             <label for='transport-options'>Travelling by:</label>
             <input
                 type='checkbox'
@@ -60,7 +60,7 @@
             <input type='checkbox' id='vehicle5' name='vehicle' value='Other' />
             <label for='vehicle5'>Other </label>
         </div>
-        <div class='form-group baggage'>
+        <div class='form-group baggage m-2'>
             <label for='bag-options'>Baggage:</label>
             <input type='checkbox' id='bag1' name='bag' value='Cabin Bag' />
             <label for='bag1'>Cabin Bag</label>
@@ -97,7 +97,7 @@
             <label for='bag9'>Oversize</label>
         </div>
 
-        <div class='form-group'>
+        <div class='form-group m-2'>
             <label for='climate'>Climate:</label>
             <input
                 type='text'
@@ -106,9 +106,10 @@
                 value='{{packList.climates}}'
             />
         </div>
-        <div class='form-group'>
+        <div class='form-group m-2'>
             <button
-                class='bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md'
+                id='final-update-list-button'
+                class='bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md m-2'
                 type='submit'
             >Update list</button>
         </div>
