@@ -43,7 +43,6 @@ Here, you will be able to see all the packing lists, and their journey summaries
 On this page, accessed by clicking "Create New List" on the dashboard page, you will be able to create a new packing list by typing a list title on the "name" field, and clicking the "create list" button. Optionally, you may choose to fill out the rest of the form with information such as the dates of your trip, the destination, what you will travel by, what kind of baggage you will be bringing, as well as the climate of your destination.
 
 ![Screenshot 1 of add items page](./public/assets/editlist1_ss.png)
-![Screenshot 2 of add items page](./public/assets/editlist2_ss.png)
 
 On this page, accessed by clicking the title of your created list, you will be able to add all the items you may need to bring to your trip. You can do this by typing in the item you would like to bring in the field labelled "Enter items" (an automatic drop-down menu will appear to help you with your list creation) and then clicking the "Add" button. You may also choose to add on suggested packing items to your list by simply clicking on them. The list itself will appear at the bottom of the page, and you may sort your list by name, category, and bags - all in either ascending or descending order.
 
