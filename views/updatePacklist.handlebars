@@ -3,21 +3,43 @@
     <form id='update-list-form' class=''>
         <div class='form-group'>
             <label for='name'>Name*:</label>
-            <input type='text' id='name' name='name' placeholder='Mandatory field' value='{{packList.name}}'required />
+            <input
+                type='text'
+                id='name'
+                name='name'
+                placeholder='Mandatory field'
+                value='{{packList.name}}'
+                required
+            />
         </div>
         <div class='form-group'>
             <label for='dateFrom'>Date From:</label>
-            <input type='date' id='dateFrom' name='dateFrom' value = '{{format_datePickerValue packList.date_from}}'/>
+            <input
+                type='date'
+                id='dateFrom'
+                name='dateFrom'
+                value='{{format_datePickerValue packList.date_from}}'
+            />
         </div>
 
         <div class='form-group'>
             <label for='dateTo'>Date To:</label>
-            <input type='date' id='dateTo' name='dateTo' value = '{{format_datePickerValue packList.date_to}}' />
+            <input
+                type='date'
+                id='dateTo'
+                name='dateTo'
+                value='{{format_datePickerValue packList.date_to}}'
+            />
         </div>
 
         <div class='form-group'>
             <label for='destination'>Destinations:</label>
-            <input type='text' id='destination' name='destination' value="{{packList.destinations}}" />
+            <input
+                type='text'
+                id='destination'
+                name='destination'
+                value='{{packList.destinations}}'
+            />
         </div>
 
         <div class='form-group transport'>
@@ -29,33 +51,13 @@
                 value='Flight'
             />
             <label for='vehicle1'> Flight</label>
-            <input
-                type='checkbox'
-                id='vehicle2'
-                name='vehicle'
-                value='Car'
-            />
+            <input type='checkbox' id='vehicle2' name='vehicle' value='Car' />
             <label for='vehicle2'> Car</label>
-            <input
-                type='checkbox'
-                id='vehicle3'
-                name='vehicle'
-                value='Ship'
-            />
+            <input type='checkbox' id='vehicle3' name='vehicle' value='Ship' />
             <label for='vehicle3'> Ship</label>
-            <input
-                type='checkbox'
-                id='vehicle4'
-                name='vehicle'
-                value='Train'
-            />
+            <input type='checkbox' id='vehicle4' name='vehicle' value='Train' />
             <label for='vehicle5'> Train</label>
-            <input
-                type='checkbox'
-                id='vehicle5'
-                name='vehicle'
-                value='Other'
-            />
+            <input type='checkbox' id='vehicle5' name='vehicle' value='Other' />
             <label for='vehicle5'>Other </label>
         </div>
         <div class='form-group baggage'>
@@ -97,14 +99,20 @@
 
         <div class='form-group'>
             <label for='climate'>Climate:</label>
-            <input type='text' id='climate' name='climate' value="{{packList.climates}}"/>
+            <input
+                type='text'
+                id='climate'
+                name='climate'
+                value='{{packList.climates}}'
+            />
         </div>
         <div class='form-group'>
-            <button class='bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md' type='submit'>Update list</button>
+            <button
+                class='bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md'
+                type='submit'
+            >Update list</button>
         </div>
     </form>
-
-
 
 </div>
 

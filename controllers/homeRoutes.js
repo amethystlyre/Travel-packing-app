@@ -130,7 +130,7 @@ router.get('/update/:id', async (req, res) => {
         const packList = packListData.get({ plain: true });
         console.log(packList);
 
-        res.render('updatePackList', {
+        res.render('updatePacklist', {
             packList:packList,
             user_id: req.session.userId,
             loggedIn: req.session.loggedIn,
