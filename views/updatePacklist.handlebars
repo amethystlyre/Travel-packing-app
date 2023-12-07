@@ -1,6 +1,6 @@
 <div>
     <h2>Update your Packing List</h2>
-    <form id='update-list-form' class=''>
+    <form id='update-list-form' class='' data-id='{{packList.id}}'>
         <div class='form-group'>
             <label for='name'>Name*:</label>
             <input
@@ -108,6 +108,7 @@
         </div>
         <div class='form-group'>
             <button
+                id='final-update-list-button'
                 class='bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md'
                 type='submit'
             >Update list</button>
