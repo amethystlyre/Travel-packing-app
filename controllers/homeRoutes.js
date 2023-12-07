@@ -30,11 +30,14 @@ router.get('/dashboard', isAuth, async (req, res) => {
     try {
         const packListData = await PackList.findAll({
             where: { user_id: req.session.userId },
+            include: [{ model: Baggage, as: 'luggages' }],
         });
 
         const packLists = packListData.map((packList) =>
             packList.get({ plain: true })
         );
+
+        //console.log(packLists[0].luggages);
 
         res.render('dashboard', {
             packLists,
@@ -131,7 +134,7 @@ router.get('/update/:id', async (req, res) => {
         console.log(packList);
 
         res.render('updatePacklist', {
-            packList:packList,
+            packList: packList,
             user_id: req.session.userId,
             loggedIn: req.session.loggedIn,
         });
@@ -139,22 +142,5 @@ router.get('/update/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
-
-// router.put('/update/:id', async (req, res) => {
-//     try {
-//         const modelInstance = await PackList.findByPk(req.params.id);
-//         const updatedData = {
-//             name: listName,
-//             destinations: listDestination,
-//             transports: selectedTransport,
-//             climates: listClimate,
-//             luggages: selectedBags,
-//         };
-//         await modelInstance.update(updatedData);
-//         res.status(200).json(modelInstance);
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// });
 
 module.exports = router;
