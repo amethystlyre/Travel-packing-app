@@ -1,4 +1,4 @@
-<div>
+<div class="mx-10">
     <button
         id='new-list-btn'
         class='font-semibold underline hover:text-green'
@@ -6,7 +6,7 @@
     > Create New List</button></div>
 
 {{#each packLists as |list|}}
-    <div class='list'>
+    <div class='list mx-10'>
         <div class='list-title space-y-2'>
             <h3 class='font-semibold text-xl align-center text-green'><a
                     href='/dashboard/{{list.id}}'
@@ -28,7 +28,7 @@
 
         </div>
         <button
-            class='bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md'
+            class='bg-grey hover:bg-green text-white font-semibold py-2 px-4 rounded-md m-2'
         >
             <a href='/update/{{list.id}}'>Update</a></button>
     </div>
