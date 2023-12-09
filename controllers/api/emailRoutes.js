@@ -1,8 +1,12 @@
 const router = require('express').Router();
+
+//NPM package for emailing
 const mailTransporter = require('../../config/nodemailer');
 const { User, PackList, Item } = require('../../models');
 const isAuth = require('../../utils/auth');
 
+
+//email a items on the packing list to bring 
 router.post('/', isAuth, async (req, res) => {
     try {
 
@@ -19,13 +23,16 @@ router.post('/', isAuth, async (req, res) => {
         });
         const packList = packListData.get({ plain: true });
         //console.log(packList.listOfItems);
+
+        const items = ''
         
-        
-        const items = packList.listOfItems.map((item) => item.name).join(", ");
+        if (packList.listOfItems){
+            items = packList.listOfItems.map((item) => item.name).join(", ");
+        }
         //console.log(items);
 
         let emailTemplate = `${emailMsg}
-        
+
 Here's a list of items that I plan to bring for ${emailListName} trip: 
 ${items}
         

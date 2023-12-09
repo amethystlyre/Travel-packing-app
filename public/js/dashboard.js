@@ -1,4 +1,3 @@
-
 const newListButton = async (event) => {
     event.preventDefault();
 
@@ -9,6 +8,7 @@ document
     .querySelector('#new-list-btn')
     .addEventListener('click', newListButton);
 
+//handle interaction with email modal
 const emailCloseButton = async (event) => {
     event.preventDefault();
     let modal = document.querySelector('#email-modal');
@@ -41,7 +41,7 @@ emailBtns.forEach(function (button) {
     button.addEventListener('click', emailButton);
 });
 
-
+//handle interaction with sending email
 const emailFormHandler = async (event) => {
     event.preventDefault();
 
