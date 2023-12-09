@@ -36,7 +36,11 @@ Once at the sign-up page, you may enter your chosen credentials to create an acc
 
 ![Screenshot of dashboard](./public/assets/dashboard_ss.png)
 
-Here, you will be able to see all the packing lists, and their journey summaries, you have created. You may click on the "create new list" link to create a brand-new list. You may also click on the title of your already-created list to both add items to that list, as well as see the items you have already added.
+Here, you will be able to see all the packing lists, and their journey summaries, you have created. You can click on the Update button to update basic travel details or click on the Email button to your list of items eg. to a travel companion.
+
+![Screenshot of email form](./public/assets/emailmodal_ss.png)
+
+You may click on the "create new list" link to create a brand-new list. You may also click on the title of your already-created list to both add items to that list, as well as see the items you have already added.
 
 ![Screenshot of create new list page](./public/assets/newlist_ss.png)
 
@@ -51,6 +55,8 @@ And there you have it! A simple and easy-to-use app for all your travel-packing-
 ## Credits
 
 <a href="https://www.freepik.com/icon/suitcase_2744091#fromView=search&term=luggage+tick&page=1&position=11&track=ais&uuid=048cc75c-22f1-46a2-896b-2fbcbbf01d01">Icon by Smashicons</a>
+
+Email sent using [Nodemailer](https://nodemailer.com/)
 
 ## Contacts
 
