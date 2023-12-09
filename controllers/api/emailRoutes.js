@@ -24,7 +24,7 @@ router.post('/', isAuth, async (req, res) => {
         const packList = packListData.get({ plain: true });
         //console.log(packList.listOfItems);
 
-        const items = ''
+        let items = '';
         
         if (packList.listOfItems){
             items = packList.listOfItems.map((item) => item.name).join(", ");
