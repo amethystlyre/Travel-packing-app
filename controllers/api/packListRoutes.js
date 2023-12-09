@@ -8,7 +8,7 @@ router.get('/:id', isAuth, async (req, res) => {
             include: [{ model: Baggage, as: 'luggages' }],
         });
         const packList = packListData.get({ plain: true });
-        console.log(packList);
+        //console.log(packList);
 
         if (!packList) {
             return res.status(404).send({ message: 'Pack List not found.' });
@@ -56,7 +56,7 @@ router.post('/', isAuth, async (req, res) => {
         if (!newPackList) {
             return res.status(404).send({ message: 'Pack List not created.' });
         }
-        console.log(newPackList);
+        //console.log(newPackList);
         res.status(200).send(newPackList);
     } catch (error) {
         res.status(500).send({ message: 'Error creating your Pack List.' });
@@ -105,7 +105,7 @@ router.put('/:id', isAuth, async (req, res) => {
         //console.log(updatedPackList);
 
         const list = await PackList.findByPk(req.params.id);
-        console.log(list);
+        //console.log(list);
 
         await list.addLuggages(bags);
 
@@ -118,5 +118,32 @@ router.put('/:id', isAuth, async (req, res) => {
         res.status(500).send({ message: 'Error creating your Pack List.' });
     }
 });
+
+router.delete('/:id', isAuth, async (req, res) => {
+    try {
+
+        //console.log(req.body);
+        //console.log(req.params.id);
+
+        const delPackList = await PackList.destroy({
+            where: {
+              id:req.params.id
+            }
+          });
+
+        console.log(delPackList);
+
+        if (!delPackList) {
+            res.status(404).send({ message: 'No post with this id!' });
+        } else {
+            res.status(200).send({ message: `${delPackList} item deleted`});
+        }
+
+    } catch (error) {
+        res.status(500).send({ message: 'Error deleting Pack List.' });
+    }
+});
+
+
 
 module.exports = router;
