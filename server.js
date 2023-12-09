@@ -3,6 +3,7 @@ const session = require('express-session');
 const routes = require('./controllers');
 const exphbs = require('express-handlebars');
 
+
 const path = require('path');
 const helpers = require('./utils/helper');
 const hbs = exphbs.create({ helpers });
@@ -41,3 +42,6 @@ app.use(routes);
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log('Now listening'));
 });
+
+
+
