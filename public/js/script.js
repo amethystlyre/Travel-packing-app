@@ -192,12 +192,36 @@ const addUnlistedItem = async (event) => {
         }
     }
 
+    if (!bagsList.includes(bagName)) {
+        const newBaggage = {
+            name: bagName,
+        };
+
+        const response = await fetch(`/api/baggages/`, {
+            method: 'POST',
+            body: JSON.stringify(newBaggage),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (response.ok) {
+            catData = await response.json();
+            console.log(catData);
+        } else {
+            //alert('Failed to create list');
+            console.log(response.status);
+        }
+    }
+
     const newItem = {
         name: itemName,
     };
 
     if (categoryName) {
         newItem.category = categoryName;
+    }
+    if (bagName) {
+        newItem.baggage = bagName;
     }
     console.log(newItem);
 
